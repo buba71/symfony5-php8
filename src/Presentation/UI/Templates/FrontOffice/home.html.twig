@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Welcome
+{% endblock %}
+
+{% block body %}
+    <main class="container text-center">
+        <div class="content-wrapper">
+            <h1>Welcome!</h1>
+            <p>Log in please</p>
+            <button class="btn btn-primary"><a href={{ path('login') }}>Login</a></button>
+        </div>
+    </main>
+{% endblock %}
