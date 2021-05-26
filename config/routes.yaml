@@ -1,3 +1,7 @@
 home:
     path: /
     controller: App\Presentation\Web\Controller\HomeController::index
+
+login:
+    path: /login
+    controller: App\Presentation\Web\Controller\SecurityController::login

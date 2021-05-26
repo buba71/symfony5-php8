@@ -1,2 +1,3 @@
 twig:
-    default_path: '%kernel.project_dir%/src/Infrastructure/Twig/Templates'
+    default_path: '%kernel.project_dir%/src/Presentation/UI/Templates'
+    form_themes: ['bootstrap_4_layout.html.twig']
