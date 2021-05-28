@@ -3,5 +3,16 @@ main {
 }
 
 .content-wrapper {
+  display: flex;
+  justify-content: center;
   margin-top: 250px;
 }
+
+.home__content {
+  text-align: center;
+}
+
+.btn {
+  font-size: larger;
+}
+
