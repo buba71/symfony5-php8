@@ -1,7 +1,19 @@
+admin:
+    path: /admin
+    controller: App\Presentation\Web\Controller\AdminController::index
+
+create_admin:
+    path: /create-admin
+    controller: App\Presentation\Web\Controller\CreateAdminController
+
 home:
     path: /
-    controller: App\Presentation\Web\Controller\HomeController::index
+    controller: App\Presentation\Web\Controller\HomeController
 
 login:
     path: /login
     controller: App\Presentation\Web\Controller\SecurityController::login
+
+register_completed:
+    path: /register-completed
+    controller: App\Presentation\Web\Controller\RegisterCompletedController

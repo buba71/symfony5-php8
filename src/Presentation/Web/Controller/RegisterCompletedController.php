@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Presentation\Web\Controller;
 
+use App\Infrastructure\Views\RegisteredCompletedView;
 use Symfony\Component\HttpFoundation\Response;
-use Twig\Environment;
 
-final class HomeController
+final class RegisterCompletedController
 {
     /**
-     * @param Environment $environment
+     * @param RegisteredCompletedView $view
      * @return Response
      * @throws \Twig\Error\LoaderError
      * @throws \Twig\Error\RuntimeError
      * @throws \Twig\Error\SyntaxError
      */
-    public function __invoke(Environment $environment): Response
+    public function __invoke(RegisteredCompletedView $view): Response
     {
-        return new Response($environment->render('FrontOffice/home.html.twig'));
+        return $view->generateView();
     }
 }
