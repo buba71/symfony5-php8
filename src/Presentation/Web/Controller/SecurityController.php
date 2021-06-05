@@ -13,5 +13,4 @@ final class SecurityController
     {
         return new Response($environment->render('Security/login.html.twig'));
     }
-
 }
