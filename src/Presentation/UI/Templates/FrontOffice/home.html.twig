@@ -4,11 +4,13 @@
 {% endblock %}
 
 {% block body %}
-    <main class="container text-center">
+    <main class="container">
         <div class="content-wrapper">
-            <h1>Welcome!</h1>
-            <p>Log in please</p>
-            <button class="btn btn-primary"><a href={{ path('login') }}>Login</a></button>
+            <div class="home__content">
+                <h1>WELCOME!</h1>
+                <p>Log in please</p>
+                <button class="btn btn--blue btn--l"><a href={{ path('login') }}>Login</a></button>
+            </div>
         </div>
     </main>
 {% endblock %}

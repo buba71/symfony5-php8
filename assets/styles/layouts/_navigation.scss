@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  flex-direction: column;
+  background-color: #212326;
+  font-family: Arial, sans-serif;
+  color: #e0e0e0;
+  padding: 0.5rem;
+  &__brand {
+    font-size: 2rem;
+  }
+  &__links {
+    display: inline-block;
+    list-style: none;
+  }
+}
+
+.nav__item {
+  display: inline;
+}
