@@ -1,8 +1,10 @@
 @import 'abstracts/variables';
 @import 'abstracts/mixins';
 @import 'base/reset';
+@import 'base/font';
 @import 'page/home.scss';
 @import 'page/create_admin';
+@import 'page/login_admin';
 @import 'layouts/navigation';
 @import 'components/button';
 
