@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success text-center">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <div class="content-wrapper">
+
+        </div>
+        <h1 class="text-center">You are in admin panel!</h1>
+
+    </main>
+
+{% endblock %}

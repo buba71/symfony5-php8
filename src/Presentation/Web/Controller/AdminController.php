@@ -6,10 +6,12 @@ namespace App\Presentation\Web\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 
+use Twig\Environment;
+
 final class AdminController
 {
-    public function index(): Response
+    public function index(Environment $twig): Response
     {
-        return new Response('Admin space');
+        return new Response($twig->render('BackOffice/index.html.twig'));
     }
 }

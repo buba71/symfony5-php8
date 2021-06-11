@@ -14,5 +14,5 @@ doctrine:
                 is_bundle: false
                 type: annotation
                 dir: '%kernel.project_dir%/src/Infrastructure/Persistence/Doctrine/Entity'
-                prefix: 'App\Entity'
+                prefix: 'App\Infrastructure\Persistence\Doctrine\Entity'
                 alias: App
