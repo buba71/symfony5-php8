@@ -17,8 +17,7 @@ login:
 logout:
     path: /logout
     controller: App\Presentation\Web\Controller\SecurityController::logout
-
-
+    
 register_completed:
     path: /register-completed
     controller: App\Presentation\Web\Controller\RegisterCompletedController
