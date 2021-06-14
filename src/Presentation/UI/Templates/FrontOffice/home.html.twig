@@ -8,7 +8,9 @@
         <div class="content-wrapper">
             <div class="home__content">
                 <h1>WELCOME!</h1>
-                <p>Log in please</p>
+                {% if not app.user %}
+                    <p>Log in please</p>
+                {% endif %}
                 <button class="btn btn--green btn--l"><a href={{ path('admin') }}>Admin</a></button>
             </div>
         </div>

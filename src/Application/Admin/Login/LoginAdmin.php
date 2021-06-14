@@ -6,8 +6,7 @@ namespace App\Application\Admin\Login;
 
 final class LoginAdmin
 {
-    public function execute()
+    public function execute(LoginAdminRequest $request)
     {
-
     }
 }
