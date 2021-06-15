@@ -33,7 +33,7 @@ class UserDoctrineRepository extends ServiceEntityRepository implements Password
         $userDoctrineEntity->setRoles(['ROLE_ADMIN']);
 
         $this->getEntityManager()->persist($userDoctrineEntity);
-        $this->getEntityManager()->flush($userDoctrineEntity);
+        $this->getEntityManager()->flush();
     }
 
     public function getUserByEmail(string $email): ?User
@@ -48,7 +48,7 @@ class UserDoctrineRepository extends ServiceEntityRepository implements Password
 
     public function getAllAdmins(): array
     {
-        // TODO: Implement getAllAdmins() method.
+        return [];
     }
 
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void

@@ -6,5 +6,4 @@ namespace App\Infrastructure\Security;
 
 class UserNotFoundException extends \Exception
 {
-
 }

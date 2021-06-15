@@ -6,5 +6,4 @@ namespace App\Application\Admin\Login;
 
 final class LoginAdminRequest
 {
-
 }

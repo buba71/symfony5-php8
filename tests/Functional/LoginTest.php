@@ -6,12 +6,13 @@ namespace App\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class HomeTest extends WebTestCase
+class LoginTest extends WebTestCase
 {
-    public function testHomePage(): void
+    public function testLoginRoute(): void
     {
         $client = static::createClient();
-        $client->request('GET', '/');
+
+        $client->request('GET', '/login');
 
         static::assertResponseIsSuccessful();
     }
