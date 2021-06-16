@@ -6,12 +6,13 @@ namespace App\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class HomeTest extends WebTestCase
+class RegisterCompletedTest extends WebTestCase
 {
-    public function testHomePage(): void
+    public function testIfResponseIsSuccessFull()
     {
         $client = static::createClient();
-        $client->request('GET', '/');
+
+        $client->request('GET', '/register-completed');
 
         static::assertResponseIsSuccessful();
     }

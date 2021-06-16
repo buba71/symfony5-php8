@@ -6,5 +6,4 @@ namespace App\Presentation\Admin\Login;
 
 final class LoginAdminHtmlPresenter
 {
-
 }

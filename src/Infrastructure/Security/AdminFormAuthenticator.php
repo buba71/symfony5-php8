@@ -8,7 +8,7 @@ use App\Infrastructure\Persistence\Doctrine\Repository\UserDoctrineRepository;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -27,13 +27,13 @@ final class AdminFormAuthenticator extends AbstractAuthenticator
 {
     /**
      * AdminFormAuthenticator constructor.
-     * @param FlashBagInterface $flashBag
+     * @param SessionInterface $session
      * @param UserProviderInterface $userProvider
      * @param UserDoctrineRepository $userRepository
      * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
-        private FlashBagInterface $flashBag,
+        private SessionInterface $session,
         private UserProviderInterface $userProvider,
         private UserDoctrineRepository $userRepository,
         private UrlGeneratorInterface $urlGenerator
@@ -60,7 +60,6 @@ final class AdminFormAuthenticator extends AbstractAuthenticator
         if (!$user) {
             throw new UsernameNotFoundException();
         }
-        
          return new Passport(
              new UserBadge($user->getUsername()),
              new PasswordCredentials($request->request->get('password')),
@@ -80,7 +79,7 @@ final class AdminFormAuthenticator extends AbstractAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        $this->flashBag->add('success', 'you\'re logged in!!');
+        $this->session->getBag('flashes')->add('success', 'you\'re logged in!!');
         return new RedirectResponse($this->urlGenerator->generate('admin'));
     }
 
@@ -91,7 +90,7 @@ final class AdminFormAuthenticator extends AbstractAuthenticator
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
-        $this->flashBag->add('error', 'Bad credentials. Try again');
+        $this->session->getBag('flashes')->add('error', 'Bad credentials. Try again');
         return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 }
