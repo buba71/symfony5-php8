@@ -15,7 +15,6 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_USERNAME: root
           MYSQL_ROOT_PASSWORD: root
 
     strategy:
