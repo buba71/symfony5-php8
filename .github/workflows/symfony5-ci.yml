@@ -1,4 +1,5 @@
 name: Symfony 5 CI test
+
 on:
   push:
     branches:
@@ -9,10 +10,22 @@ jobs:
   symfony:
     name: Symfony 5.2 (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-20.04
+
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_USERNAME: root
+          MYSQL_ROOT_PASSWORD: root
+
     strategy:
+      fail-fast: true
       matrix:
         php-versions:
           - 8.0
+        node-version:
+          - 14.7
+
     steps:
       # https://github.com/actions/checkout (official)
       - name: Checkout
@@ -24,8 +37,63 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
 
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      # Setup webpack encore with yarn
+      - name: install Yarn
+        run: npm install -g yarn
+
+      - name: Install depedencies
+        run: yarn install
+
+      - name: Build assets
+        run: yarn encore production
+
+      # cache composer dependencies
+      - name: Determine composer cache directory
+        id: determine-composer-cache-directory
+        run: echo \"::set-output name=directory::$(composer config cache-dir)\"
+
+      - name: Cache dependencies installed with composer
+        uses: actions/cache@v2.0.0
+        with:
+          path: ${{ steps.determine-composer-cache-directory.outputs.directory }}
+          key: php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-${{ hashFiles('composer.lock') }}
+          restore-keys: php-${{ matrix.php-version }}-composer-${{ matrix.dependencies }}-
+
       # composer
       - name: Validate composer.json and composer.lock
         run: composer validate
+
+      - name: Install depedencies
+        run: composer install
+
+      # init database
+      - name: create database
+        run: |
+          php bin/console doctrine:database:drop --if-exists --force --env=test
+          php bin/console doctrine:database:create --env=test
+          php bin/console doctrine:schema:update --force --env=test
+          php bin/console doctrine:fixtures:load --no-interaction --env=test
+
+      # running test
+      - name: run functional tests
+        run: php bin/phpunit
+
+      # running code quality tools
+      - name: run phpstan
+        run: ./vendor/bin/phpstan analyse src
+
+      - name: fix phpcs errors
+        run: ./vendor/bin/phpcbf src
+
+      - name: run php code sniffer
+        run: ./vendor/bin/phpcs src
+
+
+
 
 
