@@ -15,6 +15,7 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
+          MYSQL_HOST: localhost
           MYSQL_DATABASE: security
           MYSQL_USER: root
           MYSQL_PASSWORD: root
@@ -63,11 +64,6 @@ jobs:
 
       - name: Install depedencies
         run: composer install
-
-      # start mysql
-      - name: Starting mysql
-        run: sudo /etc/init.d/mysql start
-    
 
       # init database
       - name: create database
