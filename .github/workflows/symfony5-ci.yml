@@ -64,6 +64,10 @@ jobs:
       - name: Install depedencies
         run: composer install
 
+      # starting mysql server
+      - name: start mysql
+        run : sudo /etc/init.d/mysql start
+
       # init database
       - name: create database
         run: |
