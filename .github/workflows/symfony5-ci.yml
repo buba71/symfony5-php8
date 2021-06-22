@@ -11,14 +11,6 @@ jobs:
     name: Symfony 5.2 (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-20.04
 
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-        ports:
-          - 3306
-
     strategy:
       fail-fast: true
       matrix:
@@ -57,7 +49,7 @@ jobs:
       - name: Validate composer.json and composer.lock
         run: composer validate
 
-      - name: Install depedencies
+      - name: Install composer depedencies
         run: composer install
 
       # starting mysql server
